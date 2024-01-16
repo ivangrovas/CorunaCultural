@@ -14,17 +14,26 @@
         tools:targetApi="31">
 
         <activity
+            android:name=".OptionsSC"
+            android:exported="false">
+        </activity>
+
+        <activity
             android:name=".LoginSC"
             android:exported="false" />
+
         <activity
             android:name=".RegisterSC"
             android:exported="false" />
+
         <activity
             android:name=".FirstTimeSC"
             android:exported="false" />
+
         <activity
             android:name=".DetailSC"
             android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -33,5 +42,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
+
 </manifest>
