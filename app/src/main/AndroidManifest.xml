@@ -12,14 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CorunaCultural"
         tools:targetApi="31">
+
         <activity
-            android:name=".MainActivity"
+            android:name=".RegisterSC"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <!-- MainActivity no tiene la acción MAIN ni la categoría LAUNCHER aquí -->
         </activity>
     </application>
 
