@@ -13,6 +13,15 @@
         android:theme="@style/Theme.CorunaCultural"
         tools:targetApi="31">
         <activity
+            android:name=".LoginSC"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterSC"
+            android:exported="false" />
+        <activity
+            android:name=".FirstTimeSC"
+            android:exported="false" />
+        <activity
             android:name=".DetailSC"
             android:exported="false" />
         <activity
@@ -25,5 +34,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
