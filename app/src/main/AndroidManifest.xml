@@ -22,6 +22,9 @@
             android:name=".FirstTimeSC"
             android:exported="false" />
         <activity
+            android:name=".DetailSC"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -31,5 +34,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
