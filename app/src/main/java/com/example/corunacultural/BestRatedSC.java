@@ -42,7 +42,7 @@ public class BestRatedSC extends AppCompatActivity {
         // Crear una solicitud JSON utilizando Volley
         JsonArrayRequest request = new JsonArrayRequest(
                 Request.Method.GET,
-                "https://raw.githubusercontent.com/iag0p0mb0/DI/main/resources/catalog.json",
+                "https://raw.githubusercontent.com/iag0p0mb0/DI/main/resources/monuments_cc.json",
                 null,
                 new Response.Listener<JSONArray>() {
                     @Override
@@ -74,7 +74,7 @@ public class BestRatedSC extends AppCompatActivity {
                             public void onItemClick(int position) {
                                 MonumentData clickedMonument = allMonuments.get(position);
                                 // Iniciar la nueva actividad
-                                Intent intent = new Intent(BestRatedSC.this, DetailActivity.class);
+                                Intent intent = new Intent(BestRatedSC.this, MainSC.class);
                                 // Puedes pasar datos adicionales a la nueva actividad si es necesario
                                 // intent.putExtra("clave", valor);
                                 intent.putExtra("monument",clickedMonument);

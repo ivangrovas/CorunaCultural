@@ -1,4 +1,4 @@
 package com.example.corunacultural;
 
-public class DetailActivity {
+public class MainSC {
 }
