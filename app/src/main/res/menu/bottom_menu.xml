@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/Churchs"
+        android:title="Churchs"/>
+    <item
+        android:id="@+id/Monuments"
+        android:title="Monuments"/>
+    <item
+        android:id="@+id/Museums"
+        android:title="Museums"/>
+    <item
+        android:id="@+id/Squares"
+        android:title="Squares"/>
+</menu>
