@@ -12,6 +12,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CorunaCultural"
         tools:targetApi="31">
+
+        <activity
+            android:name=".OptionsSC"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".LoginSC"
+            android:exported="false" />
+
+        <activity
+            android:name=".RegisterSC"
+            android:exported="false" />
+
+        <activity
+            android:name=".FirstTimeSC"
+            android:exported="false" />
+
+        <activity
+            android:name=".DetailSC"
+            android:exported="false" />
+
         <activity
             android:name=".MonumentViewHolder"
             android:exported="false" />
@@ -23,10 +45,10 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
