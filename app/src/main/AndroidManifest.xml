@@ -12,6 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CorunaCultural"
         tools:targetApi="31">
+      
+        <activity
+            android:name=".ChangePasswordSC"
+            android:exported="false" />
 
         <activity
             android:name=".FavouriteViewHolder"
@@ -19,6 +23,7 @@
         <activity
             android:name=".FavouriteSC"
             android:exported="false" />
+      
         <activity
             android:name=".MainSC"
             android:exported="false" />
@@ -47,9 +52,15 @@
         <activity
             android:name=".MonumentViewHolder"
             android:exported="false" />
+      
         <activity
             android:name=".BestRatedSC"
             android:exported="false" />
+        
+        <activity
+            android:name=".ChangePasswordSC"
+            android:exported="false" />
+      
         <activity
             android:name=".MainActivity"
             android:exported="true">
