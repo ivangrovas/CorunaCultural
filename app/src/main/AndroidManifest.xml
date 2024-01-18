@@ -18,6 +18,13 @@
             android:exported="false" />
 
         <activity
+            android:name=".FavouriteViewHolder"
+            android:exported="false" />
+        <activity
+            android:name=".FavouriteSC"
+            android:exported="false" />
+      
+        <activity
             android:name=".MainSC"
             android:exported="false" />
       
@@ -49,6 +56,10 @@
         <activity
             android:name=".BestRatedSC"
             android:exported="false" />
+        
+        <activity
+            android:name=".ChangePasswordSC"
+            android:exported="false" />
       
         <activity
             android:name=".MainActivity"
@@ -60,5 +71,4 @@
         </activity>
 
     </application>
-
 </manifest>
