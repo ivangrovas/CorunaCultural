@@ -14,6 +14,12 @@
         tools:targetApi="31">
 
         <activity
+            android:name=".FavouriteViewHolder"
+            android:exported="false" />
+        <activity
+            android:name=".FavouriteSC"
+            android:exported="false" />
+        <activity
             android:name=".MainSC"
             android:exported="false" />
       
@@ -54,5 +60,4 @@
         </activity>
 
     </application>
-
 </manifest>
