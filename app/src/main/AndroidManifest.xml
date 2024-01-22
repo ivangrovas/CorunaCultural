@@ -19,7 +19,9 @@
             android:exported="false" />
         <activity
             android:name=".ChangePasswordSC"
-            android:exported="false" />
+            android:exported="false">
+        </activity>
+
         <activity
             android:name=".FavouriteViewHolder"
             android:exported="false" />
@@ -51,14 +53,10 @@
             android:name=".BestRatedSC"
             android:exported="false" />
         <activity
-            android:name=".ChangePasswordSC"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
