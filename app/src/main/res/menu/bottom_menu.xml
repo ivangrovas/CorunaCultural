@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:title="Iglesias"
         android:id="@+id/Churchs"
-        android:title="Churchs"/>
+        android:icon="@drawable/capilla"/>
+
     <item
+        android:title="Monumentos"
         android:id="@+id/Monuments"
-        android:title="Monuments"/>
+        android:icon="@drawable/monumental"/>
+
     <item
+        android:title="Museos"
         android:id="@+id/Museums"
-        android:title="Museums"/>
+        android:icon="@drawable/museo"/>
+
     <item
+        android:title="Plazas"
         android:id="@+id/Squares"
-        android:title="Squares"/>
+        android:icon="@drawable/cuadrado"/>
 </menu>

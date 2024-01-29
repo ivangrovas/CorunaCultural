@@ -13,21 +13,6 @@
         android:theme="@style/Theme.CorunaCultural"
         tools:targetApi="31">
         <activity
-            android:name=".MainSC"
-            android:exported="false" />
-        <activity
-            android:name=".LoginSC"
-            android:exported="false" />
-        <activity
-            android:name=".RegisterSC"
-            android:exported="false" />
-        <activity
-            android:name=".FirstTimeSC"
-            android:exported="false" />
-        <activity
-            android:name=".DetailSC"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:padding="20dp"
+    android:id="@+id/toolbar"
+    android:gravity="center_vertical">
+
+    <ImageView
+        android:id="@+id/menu"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/baseline_reorder_black_24dp"></ImageView>
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/cc_3"
+        android:paddingLeft="10dp"></ImageView>
+
+    <TextView
+        android:id="@+id/appName"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="CorunaCultural"
+        android:textSize="20sp"></TextView>
+
+    <ImageView
+        android:id="@+id/search"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/baseline_search_black_24dp"></ImageView>
+
+</LinearLayout>

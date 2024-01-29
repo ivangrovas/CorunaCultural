@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="225dp"
+    android:gravity="bottom"
+    android:padding="16dp">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="113dp"
+        android:src="@drawable/cc_5" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CoruñaCultutal"
+        android:textColor="@color/purple0"
+        android:textStyle="bold"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hecho por: Iván Grovas, Jhamil Jhosue, Víctor Beis e Iago Pombo"
+        android:textColor="@color/purple0"/>
+
+</LinearLayout>
