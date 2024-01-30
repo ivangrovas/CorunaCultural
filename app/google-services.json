@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "94796736160",
+    "project_id": "corunacultural-2024",
+    "storage_bucket": "corunacultural-2024.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:94796736160:android:919c7e9f13535c20e18bc5",
+        "android_client_info": {
+          "package_name": "com.example.corunacultural"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9QPEses7OPsPVBT1QEG7SPNselFwXcMU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
