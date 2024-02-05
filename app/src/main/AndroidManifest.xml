@@ -15,6 +15,9 @@
         android:theme="@style/Theme.CorunaCultural"
         tools:targetApi="31">
         <activity
+            android:name=".ProfileSC"
+            android:exported="false" />
+        <activity
             android:name=".ReviewSC"
             android:exported="false" />
         <activity
