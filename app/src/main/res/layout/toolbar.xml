@@ -12,25 +12,25 @@
         android:id="@+id/menu"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:src="@drawable/baseline_reorder_black_24dp"></ImageView>
+        android:src="@drawable/baseline_reorder_black_24dp"/>
 
     <ImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/cc_3"
-        android:paddingLeft="10dp"></ImageView>
+        android:paddingLeft="10dp"/>
 
     <TextView
         android:id="@+id/appName"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="CorunaCultural"
-        android:textSize="20sp"></TextView>
+        android:textSize="20sp"/>
 
     <ImageView
         android:id="@+id/search"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:src="@drawable/baseline_search_black_24dp"></ImageView>
+        android:src="@drawable/baseline_search_black_24dp"/>
 
 </LinearLayout>
