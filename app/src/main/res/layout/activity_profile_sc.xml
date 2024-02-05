@@ -42,7 +42,7 @@
         android:textColor="#000000"
         android:textSize="18sp"
         android:padding="5dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/header1"
         />
@@ -53,7 +53,7 @@
         android:textSize="18sp"
         android:hint="(nombre)"
         android:padding="5dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header1"
         />
@@ -93,11 +93,14 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/box2"
         />
-    <TextView
+
+    <Button
+        android:id="@+id/changePwd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="(cambiar contraseña)"
-        android:textColor="#000000"
+        android:text="¿Has olvidado tu contraseña?"
+        android:textColor="@color/purple0"
+        android:backgroundTint="#00FF0000"
         android:textSize="18sp"
         android:padding="5dp"
         app:layout_constraintRight_toRightOf="parent"
@@ -115,5 +118,16 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/box3" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:itemIconTint="@color/bottom_navigation_colors"
+        app:itemTextColor="@color/bottom_navigation_colors"
+        app:menu="@menu/bottom_menu"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

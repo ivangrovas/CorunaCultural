@@ -33,6 +33,7 @@ public class BestRatedSC extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_best_rated_sc);
 
+
         // Obtener referencia al RecyclerView desde el diseño de la actividad
         RecyclerView recyclerView = findViewById(R.id.recyclerViewBestRated);
 
