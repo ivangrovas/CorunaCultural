@@ -14,7 +14,7 @@ public class MonumentItem implements Parcelable {
         try {
             // Obtiene el nombre del elemento del campo "name" en el objeto JSON
             this.itemName = json.getString("name");
-            // Obtiene la URL de la imagen del campo "image_url" en el objeto JSON
+            // Obtiene la URL de la imagen del campo "imageURL" en el objeto JSON
             this.imageUrl = json.getString("imageURL");
         } catch (JSONException e) {
             // Maneja la excepción JSONException en caso de errores al analizar el JSON

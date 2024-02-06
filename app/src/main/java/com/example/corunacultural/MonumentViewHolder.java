@@ -20,8 +20,8 @@ public class MonumentViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
 
         // Asocia las vistas de la interfaz de usuario con las variables miembro
-        image = itemView.findViewById(R.id.MonumentImageView);  // Asocia la ImageView
-        text = itemView.findViewById(R.id.MonumentTextView);      // Asocia la TextView
+        image = itemView.findViewById(R.id.monumentImage);  // Asocia la ImageView
+        text = itemView.findViewById(R.id.monumentName);      // Asocia la TextView
     }
 
     // Método para mostrar datos en las vistas de la interfaz de usuario
