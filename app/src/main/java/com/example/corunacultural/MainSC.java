@@ -15,7 +15,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.corunacultural.databinding.ActivityMapsBinding;
+import com.example.corunacultural.databinding.ActivityMainScBinding;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -26,6 +26,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.material.navigation.NavigationView;
 import com.google.maps.android.PolyUtil;
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -50,36 +51,16 @@ import java.util.List;
 
 public class MainSC extends AppCompatActivity implements OnMapReadyCallback{
     private DrawerLayout drawerLayout;
-    ImageView menu, search;
-    LinearLayout nav_profile, nav_favouriteSites, nav_rating, nav_options, nav_about;
-
+    ImageView search;
     private GoogleMap mMap;
-    private ActivityMapsBinding binding;
     private RequestQueue requestQueue;
     private Location lastKnownLocation;
     private FusedLocationProviderClient fusedLocationClient;
+    private NavigationView navigationView;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_sc);
 
-        binding = ActivityMapsBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        //Creamos una cola de respuesta para gestionar la conexión a Google Maps y así obtener el json con el que calcular la ruta
-        requestQueue = Volley.newRequestQueue(this);
-        //Esta variable nos permitirá calcular la última ubicación
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        //Obtiene el SupportMapFragment y notifica cuando el mapa está preparado para usarse
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
-
-        menu = findViewById(R.id.menu);
-        nav_profile = findViewById(R.id.nav_profile);
-        nav_favouriteSites = findViewById(R.id.nav_favouriteSites);
-        nav_rating = findViewById(R.id.nav_rating);
-        nav_options = findViewById(R.id.nav_options);
-        nav_about = findViewById(R.id.nav_about);
         search = findViewById(R.id.search);
 
         Toolbar toolbar = findViewById(R.id.mainToolbar);
@@ -87,55 +68,47 @@ public class MainSC extends AppCompatActivity implements OnMapReadyCallback{
 
         drawerLayout = findViewById(R.id.drawer_layout);
 
+        //Creamos una cola de respuesta para gestionar la conexión a Google Maps y así obtener el json con el que calcular la ruta
+        requestQueue = Volley.newRequestQueue(this);
+        //Esta variable nos permitirá calcular la última ubicación
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        //Obtiene el SupportMapFragment y notifica cuando el mapa está preparado para usarse
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map_fragment2);
+        mapFragment.getMapAsync(this);
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav, R.string.close_nav);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        if (savedInstanceState == null) {
-            Intent intent = new Intent(this, MainSC.class);
-            startActivity(intent);
-        }
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int itemId = item.getItemId();
 
-        //Esto hace que si clickamos en el icono de hamburguesa nos abre el drawerLayout
-        menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openDrawer(drawerLayout);
-            }
-        });
-        //Esto se ejecuta si clickamos en la opción de Perfil que está dentro del DrawerLayout, en ese caso nos redirecciona a la clase correspondiente
-        nav_profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                redirectActivity(MainSC.this, ProfileSC.class);
-            }
-        });
-        //Esto se ejecuta si clickamos en la opción de Mis sitios favoritos que está dentro del DrawerLayout, en ese caso nos redirecciona a la clase correspondiente
-        nav_favouriteSites.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                redirectActivity(MainSC.this, FavouritesSitesSC.class);
-            }
-        });
-        //Esto se ejecuta si clickamos en la opción de Mis valoraciones que está dentro del DrawerLayout, en ese caso nos redirecciona a la clase correspondiente
-        nav_rating.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                redirectActivity(MainSC.this, RatingSC.class);
-            }
-        });
-        //Esto se ejecuta si clickamos en la opción de Opciones que está dentro del DrawerLayout, en ese caso nos redirecciona a la clase correspondiente
-        nav_options.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                redirectActivity(MainSC.this, OptionsSC.class);
-            }
-        });
-        //Esto se ejecuta si clickamos en la opción de Acerca de que está dentro del DrawerLayout, en ese caso nos redirecciona a la clase correspondiente
-        nav_about.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                redirectActivity(MainSC.this, AboutSC.class);
+                if(itemId == R.id.nav_profile){
+                    Intent intent1 = new Intent(MainSC.this,ProfileSC.class);
+                    startActivity(intent1);
+                }
+                if(itemId == R.id.nav_favouriteSites){
+                    Intent intent1 = new Intent(MainSC.this,FavouritesSitesSC.class);
+                    startActivity(intent1);
+                }
+                if(itemId == R.id.nav_rating){
+                    Intent intent1 = new Intent(MainSC.this,RatingSC.class);
+                    startActivity(intent1);
+                }
+                if(itemId == R.id.nav_options){
+                    Intent intent1 = new Intent(MainSC.this,OptionsSC.class);
+                    startActivity(intent1);
+                }
+                if(itemId == R.id.nav_about){
+                    Intent intent1 = new Intent(MainSC.this,AboutSC.class);
+                    startActivity(intent1);
+                }
+                drawerLayout.close();
+                return true;
             }
         });
 
@@ -170,10 +143,6 @@ public class MainSC extends AppCompatActivity implements OnMapReadyCallback{
             }
         });
     }
-    //Creamos la función de apertura de DrawerLayout
-    public static void openDrawer(DrawerLayout drawerLayout){
-        drawerLayout.openDrawer(GravityCompat.START);
-    }
     //Creamos la función que haga que volvamos para atrás si le damos botón de atrás
     @Override
     public void onBackPressed() {
@@ -183,34 +152,20 @@ public class MainSC extends AppCompatActivity implements OnMapReadyCallback{
             super.onBackPressed();
         }
     }
-    //Creamos la función que nos moverá entre las clases
-    public static void redirectActivity(Activity activity, Class secondActivity){
-        Intent intent = new Intent(activity, secondActivity);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        activity.startActivity(intent);
-        activity.finish();
-    }
-    @Override
-    protected void onPause(){
-        super.onPause();
-        onBackPressed();
-    }
     // Función para mostrar el cuadro de diálogo de búsqueda personalizado
     private void showSearchDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Search")
-                .setMessage("Enter your search query:")
+        builder.setTitle("Búsqueda")
+                .setMessage("Escribe el lugar que quieres buscar:")
                 .setView(R.layout.dialog_search)
-                .setPositiveButton("Search", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Búsqueda", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        // Aquí puedes manejar la búsqueda, por ejemplo, obtener el texto del EditText
-                        // EditText editTextSearch = ((AlertDialog) dialog).findViewById(R.id.editTextSearch);
-                        // String searchQuery = editTextSearch.getText().toString();
-                        Toast.makeText(MainSC.this, "Search button clicked", Toast.LENGTH_SHORT).show();
+
+                        Toast.makeText(MainSC.this, "LLevándote al sitio!", Toast.LENGTH_SHORT).show();
                     }
                 })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -222,8 +177,8 @@ public class MainSC extends AppCompatActivity implements OnMapReadyCallback{
     public void onMapReady(GoogleMap googleMap){
         mMap = googleMap;
 
-        LatLng orzan = new LatLng(43.3699, -8.40618);
-        mMap.addMarker(new MarkerOptions().position(orzan).title("Playa de Orzán"));
+        LatLng plzMariaPita = new LatLng(43.370237, -8.395871);
+        mMap.addMarker(new MarkerOptions().position(plzMariaPita).title("Plaza de María Pita"));
 
         //Agregamos botones para alejar y acercar el mapa
         Button zoomInButton = findViewById(R.id.zoom_in);

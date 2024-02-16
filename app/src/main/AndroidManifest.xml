@@ -33,10 +33,6 @@
             android:value="AIzaSyDepnk_Vlv1_9OT6MM-wPQ9LsqzQ1nKZtI" />
 
         <activity
-            android:name=".MapsActivity"
-            android:exported="false"
-            android:label="@string/title_activity_maps" />
-        <activity
             android:name=".MainSC"
             android:exported="true">
             <intent-filter>

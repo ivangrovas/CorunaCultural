@@ -32,24 +32,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="+"
-            app:layout_constraintBottom_toTopOf="@+id/zoom_out"
+            app:layout_constraintBottom_toTopOf="@id/zoom_out"
             app:layout_constraintEnd_toEndOf="parent" />
         <Button
             android:id="@+id/zoom_out"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="-"
-            app:layout_constraintBottom_toTopOf="@+id/coordinatorLayout"
+            app:layout_constraintBottom_toTopOf="@id/coordinatorLayout"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <fragment
-            android:id="@+id/map"
+            android:id="@+id/map_fragment2"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/coordinatorLayout"
-            app:layout_constraintTop_toBottomOf="@id/toolbarContainer"
-            tools:context=".MainSC"/>
+            app:layout_constraintBottom_toTopOf="@id/coordinatorLayout"
+            app:layout_constraintTop_toBottomOf="@id/toolbarContainer"/>
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:id="@+id/coordinatorLayout"
