@@ -15,7 +15,6 @@ public class FirstTimeSC extends AppCompatActivity {
         setContentView(R.layout.activity_first_time_sc);
         Button signInBT = findViewById(R.id.signInButton);
         Button signUpBT = findViewById(R.id.signUpButton);
-
         signInBT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

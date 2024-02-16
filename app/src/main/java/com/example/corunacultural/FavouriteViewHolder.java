@@ -7,28 +7,29 @@ import android.app.Activity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 
-public class MonumentViewHolder extends RecyclerView.ViewHolder {
+
+public class FavouriteViewHolder extends RecyclerView.ViewHolder {
 
     private ImageView imageView;
     private TextView textView;
 
-    public MonumentViewHolder(@NonNull View itemView) {
+    public FavouriteViewHolder(@NonNull View itemView) {
         super(itemView);
 
-        imageView = (ImageView) itemView.findViewById(R.id.MonumentImageView);
+        imageView = (ImageView) itemView.findViewById(R.id.FavouriteImageView);
         textView = (TextView) itemView.findViewById(R.id.MonumentTextView);
     }
     // Método para mostrar datos en el ViewHolder
-    public void showData(MonumentData data, Activity activity) {
-        // Establecer el texto en el TextView con el nombre del animal
+    public void showData(FavouriteData data, Activity activity) {
+        // Establecer el texto en el TextView4 con el nombre del animal
         textView.setText(data.getName());
 
         // Utilizar la biblioteca Glide para cargar la imagen desde la URL y mostrarla en el ImageView
         Glide.with(itemView.getContext())
                 .load(data.getImageURL())
                 .into(imageView);
+
     }
 }
