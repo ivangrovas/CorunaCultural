@@ -65,98 +65,94 @@ public class MainSC extends AppCompatActivity implements OnMapReadyCallback{
     private FusedLocationProviderClient fusedLocationClient;
     private NavigationView navigationView;
     private RecyclerView recyclerViewSuggest;
+    // Método llamado cuando se crea la actividad
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_sc);
 
-        search = findViewById(R.id.search);
-
+        // Configuración de la barra de herramientas
         Toolbar toolbar = findViewById(R.id.mainToolbar);
         setSupportActionBar(toolbar);
 
+        // Obtención del DrawerLayout
         drawerLayout = findViewById(R.id.drawer_layout);
 
-        //Creamos una cola de respuesta para gestionar la conexión a Google Maps y así obtener el json con el que calcular la ruta
+        // Creación de la cola de solicitud para la conexión a Google Maps
         requestQueue = Volley.newRequestQueue(this);
-        //Esta variable nos permitirá calcular la última ubicación
+        // Inicialización del cliente de ubicación
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        //Obtiene el SupportMapFragment y notifica cuando el mapa está preparado para usarse
+        // Obtención del SupportMapFragment y notificación cuando el mapa está listo
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map_fragment2);
         if (mapFragment != null) { mapFragment.getMapAsync(this); }
 
+        // Configuración del ActionBarDrawerToggle para la navegación lateral
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav, R.string.close_nav);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
+        // Obtención de la NavigationView y configuración del listener para los elementos del menú
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                // Manejo de los clics en los elementos del menú
                 int itemId = item.getItemId();
-
-                if(itemId == R.id.nav_profile){
-                    Intent intent1 = new Intent(MainSC.this,ProfileSC.class);
+                if (itemId == R.id.nav_profile) {
+                    Intent intent1 = new Intent(MainSC.this, ProfileSC.class);
                     startActivity(intent1);
                 }
-                if(itemId == R.id.nav_favouriteSites){
-                    Intent intent1 = new Intent(MainSC.this,FavouritesSitesSC.class);
+                if (itemId == R.id.nav_favouriteSites) {
+                    Intent intent1 = new Intent(MainSC.this, FavouriteSC.class);
                     startActivity(intent1);
                 }
-                if(itemId == R.id.nav_rating){
-                    Intent intent1 = new Intent(MainSC.this,RatingSC.class);
+                if (itemId == R.id.nav_rating) {
+                    Intent intent1 = new Intent(MainSC.this, ReviewSC.class);
                     startActivity(intent1);
                 }
-                if(itemId == R.id.nav_options){
-                    Intent intent1 = new Intent(MainSC.this,OptionsSC.class);
+                if (itemId == R.id.nav_options) {
+                    Intent intent1 = new Intent(MainSC.this, OptionsSC.class);
                     startActivity(intent1);
                 }
-                if(itemId == R.id.nav_about){
-                    Intent intent1 = new Intent(MainSC.this,AboutSC.class);
-                    startActivity(intent1);
-                }
-                drawerLayout.close();
+                drawerLayout.close(); // Cerrar el DrawerLayout después de hacer clic
                 return true;
             }
         });
 
+        // Configuración del listener para los elementos de la barra de navegación inferior
         BottomNavigationView bar = findViewById(R.id.bottomNavigation);
         bar.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getItemId() == R.id.Churchs){
-                    Intent intent1 = new Intent(MainSC.this,MainSC.class);
+                // Manejo de los clics en los elementos de la barra de navegación inferior
+                if (item.getItemId() == R.id.Churchs) {
+                    Intent intent1 = new Intent(MainSC.this, MainSC.class);
                     startActivity(intent1);
                 }
-                if (item.getItemId() == R.id.Monuments){
-                    Intent intent2 = new Intent(MainSC.this,MainSC.class);
+                if (item.getItemId() == R.id.Monuments) {
+                    Intent intent2 = new Intent(MainSC.this, MainSC.class);
                     startActivity(intent2);
                 }
-                if (item.getItemId() == R.id.Museums){
-                    Intent intent3 = new Intent(MainSC.this,MainSC.class);
+                if (item.getItemId() == R.id.Museums) {
+                    Intent intent3 = new Intent(MainSC.this, MainSC.class);
                     startActivity(intent3);
                 }
-                if (item.getItemId() == R.id.Squares){
-                    Intent intent4 = new Intent(MainSC.this, MainSC .class);
+                if (item.getItemId() == R.id.Squares) {
+                    Intent intent4 = new Intent(MainSC.this, MainSC.class);
                     startActivity(intent4);
                 }
                 return true;
             }
         });
-        // Manejo del clic en el ImageView de búsqueda
-        search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showSearchDialog();
-            }
-        });
 
+        // Configuración del RecyclerView para mostrar monumentos sugeridos
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerViewSuggest = findViewById(R.id.recyclerViewSuggest);
         recyclerViewSuggest.setLayoutManager(layoutManager);
 
         Activity activity = this;
 
+        // Solicitud de JSON para obtener datos de monumentos desde un servidor remoto
         JsonArrayRequest request = new JsonArrayRequest(
                 Request.Method.GET,
                 "https://raw.githubusercontent.com/iag0p0mb0/DI/main/resources/monuments_cc.json",
@@ -166,11 +162,10 @@ public class MainSC extends AppCompatActivity implements OnMapReadyCallback{
                     public void onResponse(JSONArray response) {
                         // Procesar la respuesta JSON exitosa
                         List<MonumentData> allSuggestedMonuments = new ArrayList<>();
-
-                        // Iterar a través de los elementos en el JSON Array
+                        // Iterar a través de los elementos en el JSONArray
                         for (int i = 0; i < Math.min(response.length(), 25); i++) {
                             try {
-                                // Obtener un objeto AnimalData a partir de cada objeto JSON
+                                // Obtener un objeto MonumentData a partir de cada objeto JSON
                                 JSONObject monument = response.getJSONObject(i);
                                 MonumentData monuments = new MonumentData(monument);
                                 allSuggestedMonuments.add(monuments);
@@ -178,24 +173,16 @@ public class MainSC extends AppCompatActivity implements OnMapReadyCallback{
                                 e.printStackTrace();
                             }
                         }
-
                         // Crear un adaptador personalizado y configurarlo en el RecyclerView
-                        MonumentRecyclerViewAdapter adapter = new MonumentRecyclerViewAdapter(allSuggestedMonuments, activity);
+                        SuggestedMonumentRecyclerViewAdapter adapter = new SuggestedMonumentRecyclerViewAdapter(allSuggestedMonuments, activity);
                         recyclerViewSuggest.setAdapter(adapter);
-
-                        // Configurar un LinearLayoutManager para el RecyclerView
-                        recyclerViewSuggest.setLayoutManager(new LinearLayoutManager(activity));
-                        // Configurar el oyente de clics después de haber establecido el adaptador y el LayoutManager
-                        adapter.setOnItemClickListener(new MonumentRecyclerViewAdapter.OnItemClickListener() {
+                        // Configurar el listener de clics después de haber establecido el adaptador y el LayoutManager
+                        adapter.setOnItemClickListener(new SuggestedMonumentRecyclerViewAdapter.OnItemClickListener() {
                             @Override
                             public void onItemClick(int position) {
                                 MonumentData clickedMonument = allSuggestedMonuments.get(position);
-                                // Iniciar la nueva actividad
-                                Intent intent = new Intent(MainSC.this, MainSC.class);
-                                // Puedes pasar datos adicionales a la nueva actividad si es necesario
-                                // intent.putExtra("clave", valor);
-                                intent.putExtra("monument",clickedMonument);
-                                startActivity(intent);
+                                LatLng monumentLocation = new LatLng(clickedMonument.getLatitude(), clickedMonument.getLongitude());
+                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(monumentLocation, 18f));
                             }
                         });
                     }
@@ -213,6 +200,7 @@ public class MainSC extends AppCompatActivity implements OnMapReadyCallback{
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(request);
     }
+
     //Creamos la función que haga que volvamos para atrás si le damos botón de atrás
     @Override
     public void onBackPressed() {
@@ -222,37 +210,17 @@ public class MainSC extends AppCompatActivity implements OnMapReadyCallback{
             super.onBackPressed();
         }
     }
-    // Función para mostrar el cuadro de diálogo de búsqueda personalizado
-    private void showSearchDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Búsqueda")
-                .setMessage("Escribe el lugar que quieres buscar:")
-                .setView(R.layout.dialog_search)
-                .setPositiveButton("Búsqueda", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        Toast.makeText(MainSC.this, "LLevándote al sitio!", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                })
-                .show();
-    }
+    // Método llamado cuando el mapa está listo para ser utilizado
     @Override
     public void onMapReady(GoogleMap googleMap){
         mMap = googleMap;
 
-        //Añadimos un marcador en Coruña y movemos la cámara
+        // Añadir un marcador en A Coruña y mover la cámara
         LatLng coruna = new LatLng(43.3623, -8.4115);
         mMap.addMarker(new MarkerOptions().position(coruna).title("A Coruña"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(coruna, 13.5f));
 
-        //Añadimos marcadores predefinidos
+        // Añadir marcadores predefinidos
         LatLng plzMariaPita = new LatLng(43.3710452, -8.396409);
         mMap.addMarker(new MarkerOptions().position(plzMariaPita).title("Plaza de María Pita"));
 
@@ -262,10 +230,10 @@ public class MainSC extends AppCompatActivity implements OnMapReadyCallback{
         LatLng millenium = new LatLng(43.37697, -8.42282);
         mMap.addMarker(new MarkerOptions().position(millenium).title("Millenium"));
 
-        LatLng obelisco = new LatLng(43.385918000, -8.406607000);
+        LatLng obelisco = new LatLng(43.368326, -8.402548);
         mMap.addMarker(new MarkerOptions().position(obelisco).title("Obelisco"));
 
-        //Comprobamos que los permisos de ubicación están concedidos
+        // Comprobar si los permisos de ubicación están concedidos
         if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) !=
                 PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
@@ -275,7 +243,7 @@ public class MainSC extends AppCompatActivity implements OnMapReadyCallback{
         }
         mMap.setMyLocationEnabled(true);
 
-        //Obtener la última ubicación conocida
+        // Obtener la última ubicación conocida
         fusedLocationClient.getLastLocation()
                 .addOnSuccessListener(this, location -> {
                     if(location != null){
@@ -284,20 +252,21 @@ public class MainSC extends AppCompatActivity implements OnMapReadyCallback{
                     }
                 });
 
-        //Si hacemos un longClick, calcula la ruta a ese punto desde la ubicación actual
+        // Si se realiza un longClick, calcular la ruta a ese punto desde la ubicación actual
         mMap.setOnMapClickListener(latLng -> {
             Marker newMarker = mMap.addMarker(new MarkerOptions().position(latLng).title("Marcador Personalizado"));
             calculateRoute(lastKnownLocation, latLng);
         });
 
-        //Al hacer click en un marcador nos calcula la ruta desde la ubicación actual
+        // Al hacer clic en un marcador, calcular la ruta desde la ubicación actual
         mMap.setOnMarkerClickListener(marker -> {
             LatLng destination = marker.getPosition();
             calculateRoute(lastKnownLocation, destination);
             return true;
         });
     }
-    // Obtenemos la URL de la API para obtener las direcciones:
+
+    // Obtener la URL de la API para obtener las direcciones
     private String getDirectionsUrl(LatLng origin, LatLng destination, String apiKey){
         String str_origin = "origin= " + origin.latitude + "," + origin.longitude;
         String str_destination = "destination= " + destination.latitude + "," + destination.longitude;
@@ -308,22 +277,26 @@ public class MainSC extends AppCompatActivity implements OnMapReadyCallback{
 
         return url;
     }
+
+    // Dibujar la ruta en el mapa
     private void drawRoute(JSONObject response){
         try{
             Toast.makeText(this, "Dibuja ruta", Toast.LENGTH_SHORT).show();
-            //Obtiene la ruta principal
+            // Obtener la ruta principal
             JSONObject route = response.getJSONArray("routes").getJSONObject(0);
             JSONObject overviewPolyline = route.getJSONObject("overview_polyline");
             String encodedPath = overviewPolyline.getString("points");
             List<LatLng> path = PolyUtil.decode(encodedPath);
 
-            //Dibuja la ruta en el mapa
+            // Dibujar la ruta en el mapa
             mMap.addPolyline(new PolylineOptions().addAll(path));
         }catch (JSONException e){
             e.printStackTrace();
             Toast.makeText(this,e.getMessage().toString(), Toast.LENGTH_SHORT).show();
         }
     }
+
+    // Calcular la ruta desde la ubicación actual hasta el destino
     private void calculateRoute(Location origin, LatLng destination){
         if(origin == null){
             Toast.makeText(this, "No hay origen", Toast.LENGTH_SHORT).show();
@@ -332,15 +305,15 @@ public class MainSC extends AppCompatActivity implements OnMapReadyCallback{
         LatLng originLatLng = new LatLng(origin.getLatitude(), origin.getLongitude());
         String apiKey = "AIzaSyDepnk_Vlv1_9OT6MM-wPQ9LsqzQ1nKZtI";
         String url = getDirectionsUrl(originLatLng, destination, apiKey);
-        // Crear una solicitud JSON para obtener la ruta desde la API de Google Maps.
+        // Crear una solicitud JSON para obtener la ruta desde la API de Google Maps
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {
-                    //Aquí se procesa la respuesta JSON
+                    // Procesar la respuesta JSON
                     drawRoute(response);
                 }, error -> {
             error.printStackTrace();
         });
-        // Añadimos la solicitud a la cola de las mismas.
+        // Agregar la solicitud a la cola de solicitudes
         requestQueue.add(request);
     }
 }

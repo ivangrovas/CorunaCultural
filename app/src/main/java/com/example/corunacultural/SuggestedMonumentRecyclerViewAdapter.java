@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class SuggestedMonumentRecyclerViewAdapter extends RecyclerView.Adapter<MonumentViewHolder> {
+public class SuggestedMonumentRecyclerViewAdapter extends RecyclerView.Adapter<SuggestedMonumentViewHolder> {
     private List<MonumentData> allSuggestedMonuments;
     private Activity activity;
     private OnItemClickListener mListener;
@@ -28,13 +28,13 @@ public class SuggestedMonumentRecyclerViewAdapter extends RecyclerView.Adapter<M
     }
     @NonNull
     @Override
-    public MonumentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
+    public SuggestedMonumentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_monument_item, parent, false);
-        return new MonumentViewHolder(view);
+                .inflate(R.layout.activity_suggested_monument_view_holder, parent, false);
+        return new SuggestedMonumentViewHolder(view);
     }
     @Override
-    public void onBindViewHolder(MonumentViewHolder holder, int position) {
+    public void onBindViewHolder(SuggestedMonumentViewHolder holder, int position) {
         // Obtener los datos del monumento en la posición actual
         MonumentData dataInPositionToBeRendered = allSuggestedMonuments.get(position);
         // Llamar al método showData del ViewHolder para mostrar los datos en la vista
