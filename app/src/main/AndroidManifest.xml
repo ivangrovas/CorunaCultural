@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -25,6 +26,21 @@
             android:exported="false">
         </activity>
 
+        <!--
+             TODO: Before you run your application, you need a Google Maps API key.
+
+             To get one, follow the directions here:
+
+                https://developers.google.com/maps/documentation/android-sdk/get-api-key
+
+             Once you have your API key (it starts with "AIza"), define a new property in your
+             project's local.properties file (e.g. MAPS_API_KEY=Aiza...), and replace the
+             "YOUR_API_KEY" string in this file with "${MAPS_API_KEY}".
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDepnk_Vlv1_9OT6MM-wPQ9LsqzQ1nKZtI" />
+
         <activity
             android:name=".FavouriteViewHolder"
             android:exported="false" />
@@ -32,11 +48,8 @@
             android:name=".FavouriteSC"
             android:exported="false" />
         <activity
-            android:name=".MainSC"
-            android:exported="false" />
-        <activity
             android:name=".OptionsSC"
-            android:exported="false"></activity>
+            android:exported="false"/>
         <activity
             android:name=".LoginSC"
             android:exported="false" />
@@ -45,7 +58,12 @@
             android:exported="false" />
         <activity
             android:name=".FirstTimeSC"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".DetailSC"
             android:exported="false" />
@@ -56,12 +74,8 @@
             android:name=".BestRatedSC"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:name=".MainSC"
+            android:exported="false">
         </activity>
     </application>
 

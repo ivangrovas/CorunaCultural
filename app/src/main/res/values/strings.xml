@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">CorunaCultural</string>
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
+    <string name="title_click">Click on title</string>
+    <string name="usuario">Usuario</string>
+    <string name="nombre">Nombre</string>
+    <string name="sitios_favoritos_10">Sitios favoritos: 10</string>
+    <string name="open_nav">Open Navigation Drawer</string>
+    <string name="close_nav">Close Navigation Drawer</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>
