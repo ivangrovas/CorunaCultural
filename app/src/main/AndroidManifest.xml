@@ -3,12 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-<<<<<<< HEAD
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-=======
->>>>>>> main
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -46,20 +42,14 @@
             android:value="AIzaSyDepnk_Vlv1_9OT6MM-wPQ9LsqzQ1nKZtI" />
 
         <activity
-<<<<<<< HEAD
-            android:name=".MainSC"
-=======
             android:name=".FavouriteViewHolder"
             android:exported="false" />
         <activity
             android:name=".FavouriteSC"
             android:exported="false" />
         <activity
-            android:name=".MainSC"
-            android:exported="false" />
-        <activity
             android:name=".OptionsSC"
-            android:exported="false"></activity>
+            android:exported="false"/>
         <activity
             android:name=".LoginSC"
             android:exported="false" />
@@ -79,12 +69,10 @@
             android:name=".BestRatedSC"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
->>>>>>> main
+            android:name=".MainSC"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
