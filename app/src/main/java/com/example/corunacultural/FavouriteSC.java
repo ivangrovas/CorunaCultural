@@ -1,6 +1,5 @@
 package com.example.corunacultural;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.widget.ListAdapter;
 import android.widget.Toast;
 
@@ -18,8 +16,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -56,7 +52,7 @@ public class FavouriteSC extends AppCompatActivity {
                         List<FavouriteData> allMonuments = new ArrayList<>();
 
                         // Iterar a través de los elementos en el JSON Array
-                        for (int i = 0; i < Math.min(response.length(), 25); i++) {
+                        for (int i = 0; i < response.length(); i++) {
                             try {
                                 // Obtener un objeto AnimalData a partir de cada objeto JSON
                                 JSONObject monument = response.getJSONObject(i);
@@ -100,25 +96,5 @@ public class FavouriteSC extends AppCompatActivity {
         // Crear una cola de solicitudes Volley y agregar la solicitud a la cola
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(request);
-
-        BottomNavigationView bar = findViewById(R.id.bottomNavigation);
-        bar.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getItemId() == R.id.item1){
-                    Intent intent1 = new Intent(FavouriteSC.this,MainSC.class);
-                    startActivity(intent1);
-                }
-                if (item.getItemId() == R.id.item2){
-                    Intent intent2 = new Intent(FavouriteSC.this,BestRatedSC.class);
-                    startActivity(intent2);
-                }
-                if (item.getItemId() == R.id.item4){
-                    Intent intent4 = new Intent(FavouriteSC.this, ChangePasswordSC.class);
-                    startActivity(intent4);
-                }
-                return true;
-            }
-        });
     }
 }
