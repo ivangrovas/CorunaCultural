@@ -52,7 +52,7 @@ public class FavouriteSC extends AppCompatActivity {
                         List<FavouriteData> allMonuments = new ArrayList<>();
 
                         // Iterar a través de los elementos en el JSON Array
-                        for (int i = 0; i < Math.min(response.length(), 25); i++) {
+                        for (int i = 0; i < response.length(); i++) {
                             try {
                                 // Obtener un objeto AnimalData a partir de cada objeto JSON
                                 JSONObject monument = response.getJSONObject(i);
@@ -75,7 +75,7 @@ public class FavouriteSC extends AppCompatActivity {
                             public void onItemClick(int position) {
                                 FavouriteData clickedMonument = allMonuments.get(position);
                                 // Iniciar la nueva actividad
-                                Intent intent = new Intent(FavouriteSC.this, MainSC.class);
+                                Intent intent = new Intent(FavouriteSC.this, DetailSC.class);
                                 // Puedes pasar datos adicionales a la nueva actividad si es necesario
                                 // intent.putExtra("clave", valor);
                                 intent.putExtra("monument",clickedMonument);
