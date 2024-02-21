@@ -34,10 +34,7 @@ public class ChangePasswordSC extends AppCompatActivity {
                     Intent intent3 = new Intent(ChangePasswordSC.this,FavouriteSC.class);
                     startActivity(intent3);
                 }
-                if (item.getItemId() == R.id.item4){
-                    Intent intent4 = new Intent(ChangePasswordSC.this, ChangePasswordSC.class);
-                    startActivity(intent4);
-                }
+                
                 return true;
             }
         });
